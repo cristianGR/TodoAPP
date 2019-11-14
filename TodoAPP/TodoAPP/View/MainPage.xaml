@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="TodoAPP.MainPage">
+
+    <StackLayout Margin="10,10">
+
+        <Entry Placeholder="Ingrese el nombre de la tarea:" 
+               x:Name="EntryTaskName"
+               Text="{Binding Nombre}"></Entry>
+
+        <StackLayout Orientation="Horizontal">
+            
+            <Button Text="Prioridades" 
+                    HorizontalOptions="Start"
+                    BackgroundColor="Orange"
+                    BorderColor="White"
+                    CornerRadius="2"
+                    Margin="5"
+                    Clicked="DisplayPriorityOptionsEvent"></Button>
+            <Entry 
+                x:Name="EntryPriority"
+                Placeholder="Tipo de prioridad" 
+                Text="{Binding Prioridad}"
+                IsEnabled="False" 
+                HorizontalOptions="CenterAndExpand"
+                BackgroundColor="White"></Entry>
+            
+        </StackLayout>
+
+        <Button Text="Agregar" Command="{Binding Agregar}" Clicked="AddButtonEvent"></Button>
+        <StackLayout>
+            <ListView ItemsSource="{Binding Items}" ItemTapped="OnItemTappedEvent">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Tarea:" HorizontalOptions="Start"></Label >
+                                    <Label Text="{Binding Name}" HorizontalOptions="Center"></Label>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Prioridad:" HorizontalOptions="Start"></Label >
+                                    <Label Text="{Binding Priority}" HorizontalOptions="Center"></Label>
+                                </StackLayout>
+                            </StackLayout>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>   
+                
+            </ListView>
+        </StackLayout>
+        
+    </StackLayout>
+
+</ContentPage>
